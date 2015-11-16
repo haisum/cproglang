@@ -1,15 +1,12 @@
 #include "stdio.h"
 
-#define OUT 0
-#define IN 1
 #define MAX 1000
 
 main(){
 	char c;
-	int state = OUT;
 	int counts[MAX];
-	int count, i, j;
-	count =i = j = 0;
+	int i, j;
+	i = j = 0;
 	//initialize counts
 	for (i=0; i < MAX; i++){
 		counts[i] = 0;
