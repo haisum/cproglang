@@ -6,10 +6,10 @@ main(){
 	while((c = getchar()) != EOF){
 		if(c == ' ' && isBlank == 0){
 			isBlank = 1;
-			printf(" ");
+			putchar(' ');
 		}
 		else if(c!= ' ') {
-			printf("%c", c);
+			putchar(c);
 			isBlank = 0;
 		}
 	}
