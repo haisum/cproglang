@@ -1,50 +1,56 @@
 #include "stdio.h"
 #include "string.h"
 
-#define MAX 20 //max length of line
+#define MAX 20
 
 void getLine(char s[]);
-void printLine(char s[]);
+int hasNewLine(char s[]);
 
 main(){
-	char s[MAX+2], c;// one for \n one for \0
-	int i;
+	char s[MAX];
+	int lastNewline, i =0;
 	getLine(s);
 	while(s[0] != '\0'){
-		printLine(s);
+		for(i=0; i<strlen(s); i++){
+			if(s[i] == '\n')
+				lastNewline = 0;
+			else
+				++lastNewline;
+			putchar(s[i]);
+			if(lastNewline == MAX){
+				putchar('\n');
+				lastNewline = 0;
+			}
+		}
 		getLine(s);
 	}
 }
 
+int hasNewLine(char s[]){
+	int i;
+	for(i=0; i < strlen(s); ++i){
+		if(s[i] == '\n')
+			return 1;
+	}
+	return 0;
+}
+
 void getLine(char s[]){
 	char c;
-	int i;
-	for(i=0; i < MAX  && (c = getchar()) != EOF && c != '\n' && c != '\r'; ++i){
+	int i, lastSpace;
+	lastSpace = -1;
+	for(i=0; i < MAX && (c = getchar()) != EOF && c != '\n'; ++i){
+		if(c == ' '){
+			lastSpace = i;
+		}
 		s[i] = c;
 	}
-	if(c == '\r' || c == '\n'){
+	if(lastSpace >= 0){
+		s[lastSpace] = '\n';
+	}
+	if ( c == '\n' ){
 		s[i] = '\n';
 		++i;
 	}
 	s[i] = '\0';
-}
-
-
-void printLine(char s[]){
-	char c;
-	int lastPos, j;
-	lastPos = strlen(s) - 1;
-	for(j=lastPos; j >= 0 && s[j] != ' ' && s[j] != '\t'; --j)
-			;
-	if(j >= 0 && (s[j] == ' ' || s[j] == '\t'))
-			s[j] = '\n';
-	printf("%s", s);
-	if(j >= 0 && s[j] == '\n'){
-		while((c= getchar()) != EOF && c != '\n' && c != ' ' && c != '\t'){
-			putchar(c);
-		}
-		if( c == ' ' || c == '\t'){
-			putchar('\n');
-		}
-	}
 }
