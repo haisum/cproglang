@@ -8,7 +8,7 @@ int hasNewLine(char s[]);
 
 main(){
 	char s[MAX];
-	int lastNewline, i =0;
+	int lastNewline =0, i =0;
 	getLine(s);
 	while(s[0] != '\0'){
 		for(i=0; i<strlen(s); i++){
