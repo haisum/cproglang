@@ -11,7 +11,7 @@ main(){
 	commnet*/
 	printf("/*this is not a commnet*/");
 	printf("//this ain't a commnet");
-	/*printf("/*this is not a commnet*/");*/
+	/*printf("/*this is not a commnet");*/
 	while((c = getchar()) != EOF)/*comment here*/{
 		if (c == '\t' || c == '\n' || c == '\r' || c == ' '){ // \r is needed for windows files
 			if (state == IN){
