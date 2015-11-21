@@ -113,7 +113,7 @@ int main(){
         single comment was started
         newline was encountered
         */
-        else if (scomment == STARTED && c == '\n'){
+        else if (scomment == STARTED && prev[0] == '\n'){
             scomment = ENDED;
         }
         if(scomment != STARTED && mcomment != STARTED && c != EOF){
